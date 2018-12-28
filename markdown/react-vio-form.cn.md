@@ -22,7 +22,7 @@ class InputGroup extends Component {
       let {
         onChange,//必须使用的属性，表单字段的值改变方法
         value,//必须使用的属性，表单字段的值
-        message,////必须使用的属性,表单字段的报错信息
+        message,//必须使用的属性,表单字段的报错信息
         title,//自定义属性
         type="text"//自定义属性
       }=this.props;
@@ -133,7 +133,7 @@ class App extends Component {
             form.setError('password2','password2 must be equaled to password');
         }else{
             //clear Error Message
-            form.setError('password2','');
+            form.clearError('password2');
         }
     }
     render() {
