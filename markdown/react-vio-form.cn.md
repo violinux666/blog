@@ -1,5 +1,9 @@
 > react-vio-form 是一个react的快速轻量表单库，能快速实现表单构建。提供自定义表单格式、表单校验、表单信息反馈、表单信息隔离等功能。可采用组件声明或者API的形式来实现表单的功能
 
+[![NPM](https://img.shields.io/npm/v/react-vio-form.svg)](https://www.npmjs.com/package/react-vio-form) 
+
+[demo](https://violinux666.github.io/react-vio-form/)
+
 ***react-vio-form 基于React.createContext实现，要求开发者使用React16+的版本***
 
 github:[地址](https://github.com/violinux666/react-vio-form)
@@ -15,7 +19,7 @@ npm install --save react-vio-form
 首先我们先自定义自己的输入框组件
 
 ***InputGroup.js***
-```
+```jsx
 import React, { Component } from 'react';
 class InputGroup extends Component {
   render() {
@@ -43,7 +47,7 @@ export default InputGroup;
 - 里面是Field组件，它接收我们刚才写的InputGroup为component属性、fieldName为该字段的名称、regexp为该字段的校验正则表达式、message为当表单校验不通过的时候显示的报错信息，该信息通过props传递给InputGroup
 - 一个简单列表demo就完成了，当在username或者password输入值或者点击Submit按钮就会触发表单的校验逻辑
 ***App.js***
-```
+```jsx
 import React, { Component } from 'react';
 import InputGroup from './InputGroup';
 let requiredExp=/\w{1,}/;
@@ -73,7 +77,7 @@ export default App;
     只有表单验证通过了才会触发
 - ```<Field onChange={//}>```
     字段每次修改都会触发
-```
+```jsx
 class App extends Component {
     handleSubmit=({model})=>{
         //form submit callback
@@ -158,3 +162,10 @@ class App extends Component {
 
 ## 反馈与建议
 - 直接在github上提[issue](https://github.com/violinux666/react-vio-form/issues/new)吧 
+
+## Thanks
+- [create-react-library](https://github.com/transitive-bullshit/create-react-library)
+
+## License
+
+MIT © [violinux666](https://github.com/violinux666)
