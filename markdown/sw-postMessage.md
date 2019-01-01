@@ -1,3 +1,5 @@
+[原文](http://craig-russell.co.uk/2016/01/29/service-worker-messaging.html#.XCc7eJP1XvC)
+
 *Service Workers*是一个为页面工作的后台处理器。提供离线web apps是Service Workers目前最让人感兴趣的功能，同时Service Workers能够管理一个本地的资源缓存，当网络连接状态是正常的时候，这个本地资源缓存能够自动跟服务器进行同步。这是十分酷的，但我想谈一下Service Workers的另一个用途，使用它来管理多个web页面之间的通信。
 
 例如，你可能有一个应用打开在多个浏览器页签中。Service Workers能够更新一个页签当其他页签有一个事件触发，也可以做到当服务器发出一个消息后，所有页签的内容将被更新。
@@ -111,7 +113,7 @@ function send_message_to_sw(msg){
 }
 ```
 
-在*service-worker.js *我们修改了监听器，与消息一起发送响应在端口
+在*service-worker.js*我们修改了监听器，与消息一起发送响应在端口
 
 ```js
 self.addEventListener('message', function(event){
