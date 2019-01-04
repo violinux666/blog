@@ -10,6 +10,7 @@
 
 ## webpack
 - [自己手动开发一个Webpack Loader](https://github.com/violinux666/blog/issues/7)
+- [利用HappyPack优化webpack打包速度](https://github.com/violinux666/blog/issues/8)
 
 ## ServiceWorker
 - [[译]如何在Service Worker和网页客户端之间发送消息](https://my.oschina.net/u/988463/blog/2995231)
