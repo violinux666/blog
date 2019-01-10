@@ -64,11 +64,11 @@ var cacheList = [
     "index.js"
 ]
 self.addEventListener('install', function (e) {
-    console.log('sw-install);
+    console.log('sw-install');
     self.skipWaiting();
 })
 self.addEventListener('activate', function (e) {
-    console.log('sw-activate);
+    console.log('sw-activate');
     caches.open(cacheStorageKey).then(function (cache) {
         cache.addAll(cacheList)
     })
@@ -148,7 +148,7 @@ sw应用的生命周期我简单抽象为三种
 
 通信方面我之前有翻译过文章，[链接地址](https://github.com/violinux666/blog/issues/4)，大家感兴趣可以看看。这里我直接展示把封装好的通信接口接口
 
-有了通信接口，我们就可以优化很多事情，比方说在***cacheStorageKey发生变化的时候通知页面给予客户一定的响应***
+有了通信接口，我们就可以优化很多事情，比方说在 **cacheStorageKey发生变化的时候通知页面给予客户一定的响应**
 
 ### 客户端
 
@@ -261,7 +261,7 @@ function addPage(page){
 
 在客户端的active发消息给sw，sw就能够获取到对应的页面url进行缓存。
 
-*注：*客户端的installing事件没法使用消息接口，大家可以在sw的activate事件向客户端发出一个消息请求获取当前页面url
+*注*：客户端的installing事件没法使用消息接口，大家可以在sw的activate事件向客户端发出一个消息请求获取当前页面url
 
 ## 常见问题
 
