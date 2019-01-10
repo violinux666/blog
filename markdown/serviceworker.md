@@ -1,8 +1,8 @@
-# 利用ServiceWorker实现加快页面的加载速度和离线访问
+# 利用ServiceWorker实现页面的快速加载和离线访问
 
 > Service workers 本质上充当Web应用程序与浏览器之间的代理服务器，也可以在网络可用时作为浏览器和网络间的代理。它们旨在（除其他之外）使得能够创建有效的离线体验，拦截网络请求并基于网络是否可用以及更新的资源是否驻留在服务器上来采取适当的动作。他们还允许访问推送通知和后台同步API。(引用自：[链接](https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API))
 
-简单的来说，ServiceWorker运行在页面后台，使用了sw的页面可以利用sw来拦截页面发出的请求，同时配合CacheAPI可以将请求缓存到客户本地
+简单的来说，ServiceWorker（后文简称sw）运行在页面后台，使用了sw的页面可以利用sw来拦截页面发出的请求，同时配合CacheAPI可以将请求缓存到客户本地
 
 因此我们可以：
 
@@ -15,7 +15,9 @@
 - 由于打开页面不再向服务器发出页面请求，因此当服务器上的页面有新版本的时候客户端无法及时升级
 - sw存在一定的兼容性问题
 
+![sw-compatible](https://raw.githubusercontent.com/violinux666/blog/master/asset/sw-compatible.png)
 
+IE全面扑街，pc上兼容性不太好，移动端安卓支持良好，ios要12+。但考虑到sw并不会影响的页面的正常运行，所以项目上还是能投入生产的。
 
 ## 基本例子
 
@@ -263,4 +265,52 @@ function addPage(page){
 
 ## 常见问题
 
+sw文件至少要与入口页面文件在同一目录下，如：
+
+- /sw.js 可以管理 /index.html
+- /js/sw.js 不能管理 /index.html
+
+笔者在这里踩了很久的坑...
+
 ## webpack-sw-plugin
+
+介绍一个笔者写的webpack的sw插件，在弄sw页面的时候很方便，[github地址](https://github.com/violinux666/webpack-sw-plugin)
+
+### 安装
+
+```
+npm install --save-dev webpack-sw-plugin
+```
+
+### webpack配置
+
+```js
+const WebpackSWPlugin = require('webpack-sw-plugin');
+module.exports = {
+    // entry
+    // output
+    plugins:[
+        new WebpackSWPlugin()
+    ]
+}
+```
+
+### 客户端配置
+
+```js
+import worker from 'webpack-sw-plugin/lib/worker';
+worker.register({
+    onUpdate:()=>{
+        console.log('client has a new version. page will refresh in 5s....');
+        setTimeout(function(){
+            window.location.reload();
+        },5000)
+    }
+});
+```
+
+### 效果
+
+- 自动生成页面与sw交互的体系，无需提供额外的sw文件
+- 自动适配url带参数的情况
+- 当webpack输出文件变化的时候，客户端的onUpdate将会被触发，上述例子中当输出文件变化时，客户端将会在5秒后进行刷新，刷新后将会使用全新的文件

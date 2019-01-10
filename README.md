@@ -13,6 +13,7 @@
 - [利用HappyPack优化webpack打包速度](https://github.com/violinux666/blog/issues/8)
 
 ## ServiceWorker
+- [利用ServiceWorker实现页面的快速加载和离线访问](https://github.com/violinux666/blog/issues/9)
 - [[译]如何在Service Worker和网页客户端之间发送消息](https://my.oschina.net/u/988463/blog/2995231)
 
 ## web小技巧
