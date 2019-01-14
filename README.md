@@ -7,7 +7,6 @@
 - [[译]简单的React身份校验机制](https://my.oschina.net/u/988463/blog/3001179)
 - [[译]React Context](https://github.com/violinux666/blog/issues/6)
 - [react-vio-form1.2.0 中文文档](https://github.com/violinux666/blog/issues/3)
-- [React16新特性](https://github.com/violinux666/blog/issues/5)
 
 ## webpack
 - [自己手动开发一个Webpack Loader](https://github.com/violinux666/blog/issues/7)
